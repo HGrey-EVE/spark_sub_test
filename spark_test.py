@@ -10,7 +10,7 @@ def getSparkSession():
     # conf.setMaster('yarn-client')
     # conf.setMaster('local[*]')
     conf.setAppName("My app")
-    spark = SparkSession.builder.config(conf=conf).enableHiveSupport().getOrCreate
+    spark = SparkSession.builder.config(conf=conf).enableHiveSupport().getOrCreate()
     # spark = SparkContext(conf=conf)
     return spark
 
