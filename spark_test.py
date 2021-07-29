@@ -17,10 +17,10 @@ def getSparkSession():
 
 if __name__ == '__main__':
     spark = getSparkSession()
-    rdd = spark.textFile('hdfs:///data1/wordcount.txt')
+    rdd = spark.textFile('/data1/wordcount.txt')
     # rdd = spark.textFile('wordcount.txt')
     wc = rdd.flatMap(lambda x: re.split('[，。：]', x)).repartition(5)
-    wc.saveAsTextFile('hdfs:///data1/result.txt')
+    wc.saveAsTextFile('/data1/result.txt')
     spark.stop()
 
 
