@@ -8,8 +8,8 @@ import re
 def getSparkSession():
     conf = SparkConf()
     # conf.setMaster('yarn-client')
-    # conf.setMaster('local[*]')
-    # conf.setAppName("My app")
+    conf.setMaster('local[*]')
+    conf.setAppName("My app")
     # spark = SparkSession.builder.appName("My APP").config(conf=conf).enableHiveSupport().getOrCreate
     spark = SparkContext(conf=conf)
     return spark
@@ -17,10 +17,9 @@ def getSparkSession():
 
 if __name__ == '__main__':
     spark = getSparkSession()
-    rdd = spark.textFile('/data1/wordcount.txt')
+    rdd = spark.textFile('/data/wordcount.txt')
     # rdd = spark.textFile('wordcount.txt')
     wc = rdd.flatMap(lambda x: re.split('[，。：]', x)).repartition(5)
-    wc.saveAsTextFile('/data1/result.txt')
-    spark.stop()
+    wc.saveAsTextFile('/data/result.txt')
 
 

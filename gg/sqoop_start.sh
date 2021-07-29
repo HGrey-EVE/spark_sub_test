@@ -7,7 +7,19 @@ start_time=${old_date}' 16:20:00'
 end_time=${now_date}' 16:20:00'
 
 import_data(){
- sqoop import -D mapreduce.job.queuename=vip.zszqyuqing --connect jdbc:mysql://bbdhiggs.mysql.bbdops.com:53606/bbd_dp_datacube --username bbd_dw_read --password 'QTdnYezNo571kmZG0liP' --as-textfile --target-dir /user/hive/warehouse/pj.db/gg_event/dt=${datetime} --delete-target-dir --fields-terminated-by '\001' --null-string '\\N' --null-non-string '\\N' -m 1 --hive-drop-import-delims --split-by auto_inc --query "$1 and \$CONDITIONS "
+ sqoop import -D mapreduce.job.queuename=vip.zszqyuqing
+      --connect jdbc:mysql://bbdhiggs.mysql.bbdops.com:53606/bbd_dp_datacube
+      --username bbd_dw_read
+      --password 'QTdnYezNo571kmZG0liP'
+      --as-textfile
+      --target-dir /user/hive/warehouse/pj.db/gg_event/dt=${datetime}
+      --delete-target-dir
+      --fields-terminated-by '\001'
+      --null-string '\\N'
+      --null-non-string '\\N' -m 1
+      --hive-drop-import-delims
+      --split-by auto_inc
+      --query "$1 and \$CONDITIONS "
 }
 
 import_zszq_info(){
